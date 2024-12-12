@@ -13,11 +13,13 @@ import useProduct from "@/hooks/use-product";
 import {ProductFormData, productSchema} from "@/lib/zod-schema/product";
 import {useUpload} from "@/hooks/use-upload";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 export function ProductForm({initialData}: { initialData?: ProductFormData }) {
     const [previewImage, setPreviewImage] = useState<string | null>(initialData?.imagePath || null)
     const {addProduct, editProduct, isLoading} = useProduct();
     const {upload} = useUpload();
+    const router = useRouter();
 
     const form = useForm<ProductFormData>({
         resolver: zodResolver(productSchema),
@@ -56,9 +58,7 @@ export function ProductForm({initialData}: { initialData?: ProductFormData }) {
     return (
         <Card className="w-full max-w-2xl mx-auto bg-background">
             <CardHeader>
-                <Link href={'/product'}>
-                    <Button className={'mb-4 w-fit'} variant={'neutral'}>Back</Button>
-                </Link>
+                <Button className={'mb-4 w-fit'} onClick={() => router.push('/product')} variant={'neutral'}>Back</Button>
 
                 <CardTitle>{initialData ? 'Edit Product' : 'Add New Product'}</CardTitle>
                 <CardDescription>

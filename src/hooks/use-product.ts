@@ -36,6 +36,11 @@ export default function useProduct() {
             }
 
             router.push("/product");
+            toast({
+                title: "Success",
+                description: "Product added successfully",
+                variant: "success",
+            })
             setIsLoading(false);
             return true;
         } catch (err) {
@@ -75,6 +80,11 @@ export default function useProduct() {
             }
 
             router.push("/product");
+            toast({
+                title: "Success",
+                description: "Product updated successfully",
+                variant: "success",
+            })
             setIsLoading(false);
             return true;
         } catch (err) {

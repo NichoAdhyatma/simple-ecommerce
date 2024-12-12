@@ -50,7 +50,7 @@ export default function DashboardPage() {
     return (
         <div className="container mx-auto py-10">
             <div className="flex justify-between items-center mb-6">
-                <Button onClick={() => router.back()} variant={'neutral'}>Back</Button>
+                <Button onClick={() => router.push('/')} variant={'neutral'}>Back</Button>
                 <h1 className="text-3xl font-bold">Your Products</h1>
                 <Link href="/product/add">
                     <Button>Create New Product</Button>

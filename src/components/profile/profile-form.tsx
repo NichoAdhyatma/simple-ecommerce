@@ -60,7 +60,7 @@ export function ProfileForm({userProfile}: ProfileFormProps) {
     return (
         <Card className="w-full max-w-2xl mx-auto">
             <CardHeader>
-                <Button onClick={() => router.back()} className={'mb-4 w-fit'} variant={'neutral'}>
+                <Button onClick={() => router.push('/')} className={'mb-4 w-fit'} variant={'neutral'}>
                     Back
                 </Button>
             </CardHeader>

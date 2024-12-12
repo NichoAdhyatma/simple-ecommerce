@@ -1,6 +1,5 @@
 import {ProfileForm} from "@/components/profile/profile-form";
 import {getUserProfile} from "@/app/action/get-user";
-import {Button} from "@/components/ui/button";
 
 
 export default async function page() {

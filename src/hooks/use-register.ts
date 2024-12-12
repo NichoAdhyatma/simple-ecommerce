@@ -35,7 +35,20 @@ export function useRegister() {
                 return false;
             }
 
-            window.location.href = '/auth';
+            toast({
+                title: 'Success',
+                description: 'Registration successful, please login',
+                variant: 'success'
+            })
+
+            //delay 500ms
+
+            setTimeout(() => {
+                window.location.href = '/auth';
+            }, 500);
+
+
+
 
             setIsLoading(false);
             return true;

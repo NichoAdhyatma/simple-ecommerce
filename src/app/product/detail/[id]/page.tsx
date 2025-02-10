@@ -1,5 +1,6 @@
 import { ProductDetail } from '@/components/product/product-detail'
 import ProductNotFound from '@/components/product/product-not-found'
+import {ParamsProps} from "@/app/api/product/[id]/route";
 
 const getProduct = async (id: string) => {
     const response = await fetch(`${process.env.API_URL}/api/product/${id}`, {
@@ -11,7 +12,8 @@ const getProduct = async (id: string) => {
     }
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
+export default async function ProductPage(props:ParamsProps) {
+    const params = await props.params
     const product = await getProduct(params.id);
 
     if (!product) {

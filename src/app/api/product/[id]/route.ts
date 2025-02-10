@@ -3,8 +3,15 @@ import {ProductFormData} from "@/lib/zod-schema/product";
 import prisma from "@/lib/prisma";
 import {withAuth} from "@/lib/middleware/verify-jwt-token";
 
-export const GET = async (request: NextRequest, {params}: { params: { id: string } }) => {
+export type ParamsProps = {
+    params: Promise<{
+        id: string
+    }>
+}
+
+export async function GET(request: NextRequest, props: ParamsProps) {
     try {
+        const params = await props.params
         const product = await prisma.product.findUnique({
             where: {
                 id: params.id
@@ -23,7 +30,7 @@ export const GET = async (request: NextRequest, {params}: { params: { id: string
             }
         })
 
-        if(!product) {
+        if (!product) {
             return NextResponse.json({message: 'Product not found'}, {status: 404});
         }
 
@@ -57,9 +64,10 @@ export const PATCH = withAuth(async (request: NextRequest, {params}: { params: {
     }
 })
 
-export async function DELETE(request: NextRequest, {params}: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, props: ParamsProps) {
 
     try {
+        const params = await props.params
         const product = await prisma.product.delete(
             {
                 where: {

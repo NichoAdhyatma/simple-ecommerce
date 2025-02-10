@@ -6,8 +6,7 @@ export const GET = withAuth(async (req: NextRequest, {user}: {
     user: { id: string },
 }) => {
     try {
-        console.log('user', user);
-        console.log(req.headers.get('Authorization'));
+
         const prismaUser = await prisma.user.findUnique({
             where: {id: user.id},
             select: {
